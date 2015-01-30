@@ -15,6 +15,14 @@ module Minesweeper
 				assert_equal('B', MineField.new(1).to_s, "The string representation of a MineField of size 1 is invalid")
 				assert_equal('BBBB', MineField.new(2).to_s, "The string representation of a MineField of size 2 is invalid")
 			end
+
+			def test_at_should_throw_a_RangeError_when_position_is_out_of_bounds
+				assert_raise(RangeError) { MineField.new(1).at(2, 2) }
+			end
+
+			def test_at_should_return_a_cell_instance
+				assert_instance_of(Cell, MineField.new(1).at(0, 0))
+			end
 		end
 	end
 end
