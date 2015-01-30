@@ -1,4 +1,3 @@
-
 module Minesweeper
 	module Map
 		class MineField
