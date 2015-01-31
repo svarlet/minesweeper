@@ -2,7 +2,7 @@ require 'minesweeper/map/cell'
 
 module Minesweeper
 	module Map
-		class MineField
+		class Minefield
 			def initialize(size)
 				raise ArgumentError unless size.is_a?(Fixnum)
 				raise ArgumentError unless size >= 0
