@@ -1,4 +1,5 @@
 require 'minesweeper/map/minefield'
+require 'minesweeper/map/cell'
 require 'test/unit'
 
 module Minesweeper
@@ -22,6 +23,16 @@ module Minesweeper
 
 			def test_at_should_return_a_cell_instance
 				assert_instance_of(Cell, MineField.new(1).at(0, 0))
+			end
+
+			def test_set_mine_at_should_throw_RangeError_when_position_is_out_of_bounds
+				assert_raise(RangeError) { MineField.new(1).set_mine_at(2,2) }
+			end
+
+			def test_set_mine_at_works
+				mf = MineField.new(2)
+				mf.set_mine_at(0, 0)
+				assert_equal('M', mf.at(0, 0).to_s)
 			end
 		end
 	end
