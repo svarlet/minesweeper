@@ -1,4 +1,5 @@
-require 'minesweeper/map/cell'
+require 'minesweeper/map/blank_cell'
+require 'minesweeper/map/mine_cell'
 
 module Minesweeper
 	module Map
@@ -12,7 +13,7 @@ module Minesweeper
 
 			def create_a_squared_matrix_of_blank_cells(size)
 				Array.new(size) do
-					Array.new(size) { Cell.new(:blank) }
+					Array.new(size) { BlankCell.new }
 				end
 			end
 
@@ -27,8 +28,8 @@ module Minesweeper
 
 			def set_mine_at(row_index, col_index)
 				raise RangeError unless (row_index < @size && col_index < @size)
-				@cells[row_index][col_index] = Cell.new(:mine)
-			end
+				@cells[row_index][col_index] = MineCell.new
+      end
 
 			private :create_a_squared_matrix_of_blank_cells
 		end
