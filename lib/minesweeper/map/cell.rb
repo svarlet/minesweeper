@@ -12,6 +12,10 @@ module Minesweeper
 			# flagged	|	reveal	|	explosed		|
 			# flagged	|	unflag	|	hidden			|
 			# ---------------------------------------------------------
+
+			def initialize
+				@current_state = Hidden.new(self)
+			end			
 		end
 	end
 end
