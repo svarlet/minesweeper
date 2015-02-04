@@ -29,7 +29,7 @@ module Minesweeper
 			def set_mine_at(row_index, col_index)
 				raise RangeError unless (row_index < @size && col_index < @size)
 				@cells[row_index][col_index] = MineCell.new
-      		end
+			end
 
 			private :create_a_squared_matrix_of_blank_cells
 		end
