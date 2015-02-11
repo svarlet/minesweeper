@@ -10,6 +10,10 @@ module Minesweeper
             def flag
                 @cell.current_state = @cell.flagged_state
             end
+
+            def to_s
+              "H"
+            end
         end
     end
 end

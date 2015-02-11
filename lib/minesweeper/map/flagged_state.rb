@@ -10,6 +10,10 @@ module Minesweeper
             def unflag
                 @cell.current_state = @cell.hidden_state
             end
+
+            def to_s
+              "F"
+            end
         end
     end
 end

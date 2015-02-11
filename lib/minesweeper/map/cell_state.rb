@@ -26,6 +26,10 @@ module Minesweeper
                 fail
             end
 
+            def to_s
+              fail
+            end
+
             private :fail
         end
     end
