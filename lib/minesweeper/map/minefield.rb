@@ -1,3 +1,5 @@
+require 'minesweeper/map/null_mine'
+
 module Minesweeper
   module Map
     class Minefield
@@ -5,12 +7,12 @@ module Minesweeper
         raise ArgumentError unless size.is_a?(Fixnum)
         raise ArgumentError unless size >= 0
         @size = size
-        @cells = create_a_squared_matrix_of_blank_cells(size)
+        @cells = create_a_squared_matrix_of_empty_cells(size)
       end
 
-      def create_a_squared_matrix_of_blank_cells(size)
+      def create_a_squared_matrix_of_empty_cells(size)
         Array.new(size) do
-          Array.new(size) { Cell.new }
+          Array.new(size) { Cell.new(NullMine.new) }
         end
       end
 
@@ -23,13 +25,7 @@ module Minesweeper
         @cells[row_index][col_index]
       end
 
-      def set_mine_at(row_index, col_index)
-        raise RangeError unless (row_index < @size && col_index < @size)
-
-        raise 'feature not implemented yet !' #@cells[row_index][col_index] = Cell.new
-      end
-
-      private :create_a_squared_matrix_of_blank_cells
+      private :create_a_squared_matrix_of_empty_cells
     end
   end
 end

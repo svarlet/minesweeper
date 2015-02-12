@@ -5,6 +5,7 @@ module Minesweeper
         class FlaggedState < CellState
             def reveal
                 @cell.current_state = @cell.revealed_state
+                @cell.trigger
             end
 
             def unflag

@@ -3,12 +3,13 @@ require 'minesweeper/map/cell'
 require 'minesweeper/map/cell_state_error'
 require 'minesweeper/map/hidden_state'
 require 'minesweeper/map/revealed_state'
+require 'minesweeper/map/mine_spy'
 
 module Minesweeper
   module Map
     class RevealedStateTest < Test::Unit::TestCase
       def setup
-        @cell = Cell.new
+        @cell = Cell.new(MineSpy.new)
         @cell.reveal
       end
 

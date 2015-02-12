@@ -27,7 +27,7 @@ module Minesweeper
             end
 
             def to_s
-              fail
+                fail
             end
 
             private :fail

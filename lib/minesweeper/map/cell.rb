@@ -39,8 +39,12 @@ module Minesweeper
 			end
 
 			def to_s
-        		@current_state.to_s
-      		end
+				@current_state.to_s
+			end
+
+			def trigger
+				@mine.trigger
+			end
 		end
 	end
 end
