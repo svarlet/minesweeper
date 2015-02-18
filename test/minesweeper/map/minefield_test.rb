@@ -17,7 +17,10 @@ module Minesweeper
 			end
 
 			def test_at_should_raise_a_RangeError_when_position_is_out_of_bounds
-				assert_raise(RangeError) { Minefield.new(1).at(2, 2) }
+				assert_raise(RangeError) { Minefield.new(1).at(1, 1) }
+				assert_raise(RangeError) { Minefield.new(1).at(-1, -1) }
+				assert_raise(RangeError) { Minefield.new(1).at(-1, 0) }
+				assert_raise(RangeError) { Minefield.new(1).at(0, -1) }
 			end
 
 			def test_at_should_return_a_cell_instance

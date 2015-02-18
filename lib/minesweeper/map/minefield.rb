@@ -7,13 +7,7 @@ module Minesweeper
         raise ArgumentError unless size.is_a?(Fixnum)
         raise ArgumentError unless size >= 0
         @size = size
-        @cells = create_a_squared_matrix_of_empty_cells(size)
-      end
-
-      def create_a_squared_matrix_of_empty_cells(size)
-        Array.new(size) do
-          Array.new(size) { Cell.new(NullMine.new) }
-        end
+        @cells = Array.new(size ** 2) { Cell.new(NullMine.new) }
       end
 
       def to_s
@@ -21,11 +15,10 @@ module Minesweeper
       end
 
       def at(row_index, col_index)
-        raise RangeError unless (row_index < @size && col_index < @size)
-        @cells[row_index][col_index]
+        raise RangeError unless (0...@size).include? row_index
+        raise RangeError unless (0...@size).include? col_index
+        @cells[row_index * col_index]
       end
-
-      private :create_a_squared_matrix_of_empty_cells
     end
   end
 end
