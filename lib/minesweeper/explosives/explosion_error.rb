@@ -1,0 +1,3 @@
+class ExplosionError < StandardError
+
+end
