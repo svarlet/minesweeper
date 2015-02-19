@@ -1,4 +1,5 @@
-require 'minesweeper/map/null_mine'
+require 'minesweeper/map/elements/cell'
+require 'minesweeper/explosives/null_mine'
 
 module Minesweeper
   module Map
@@ -7,7 +8,7 @@ module Minesweeper
         raise ArgumentError unless size.is_a?(Fixnum)
         raise ArgumentError unless size >= 0
         @size = size
-        @cells = Array.new(size ** 2) { Cell.new(NullMine.new) }
+        @cells = Array.new(size ** 2) { Elements::Cell.new(Explosives::NullMine.new) }
       end
 
       def to_s
