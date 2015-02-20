@@ -21,9 +21,12 @@ module Minesweeper
       end
 
       def hide_mine_at(row_index, col_index)
-        raise RangeError unless (0...@size).include?(row_index)
-        raise RangeError unless (0...@size).include?(col_index)
+        raise RangeError unless cell_exists_at?(row_index, col_index)
         @cells[row_index * col_index] = create_explosive_cell
+      end
+
+      def cell_exists_at?(row_index, col_index)
+        (0...@size).include?(row_index) && (0...@size).include?(col_index)
       end
 
       def create_explosive_cell
@@ -31,13 +34,23 @@ module Minesweeper
       end
 
       def reveal_at(row_index, col_index)
-        raise RangeError unless (0...@size).include?(row_index)
-        raise RangeError unless (0...@size).include?(col_index)
+        raise RangeError unless cell_exists_at?(row_index, col_index)
         @cells[row_index * col_index].reveal
+      end
+
+      def flag_at(row_index, col_index)
+        raise RangeError unless cell_exists_at?(row_index, col_index)
+        @cells[row_index * col_index].flag
+      end
+
+      def unflag_at(row_index, col_index)
+        raise RangeError unless cell_exists_at?(row_index, col_index)
+        @cells[row_index * col_index].unflag
       end
 
       private :create_non_explosive_cell
       private :create_explosive_cell
+      private :cell_exists_at?
     end
   end
 end

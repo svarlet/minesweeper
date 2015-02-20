@@ -29,7 +29,34 @@ module Minesweeper
       end
 
       def test_revealing_a_cell_at_invalid_position_raises_error
-        assert_raise(RangeError) { Minefield.new(1).reveal_at(1,1) }
+        assert_raise(RangeError) { Minefield.new(1).reveal_at(1, 1) }
+      end
+
+      def test_revealing_a_cell_should_change_its_state
+        minefield = Minefield.new(1)
+        minefield.reveal_at(0, 0)
+        assert_equal('R', minefield.to_s)
+      end
+
+      def test_flagging_a_cell_at_an_invalid_position_raises_error
+        assert_raise(RangeError) { Minefield.new(1).flag_at(1, 1) }
+      end
+
+      def test_flagging_a_cell_should_change_its_state
+        minefield = Minefield.new(1)
+        minefield.flag_at(0, 0)
+        assert_equal('F', minefield.to_s)
+      end
+
+      def test_unflagging_a_cell_at_an_invalid_position_raises_error
+        assert_raise(RangeError) { Minefield.new(1).unflag_at(1, 1) }
+      end
+
+      def test_unflagging_a_cell_should_change_its_state
+        minefield = Minefield.new(1)
+        minefield.flag_at(0, 0)
+        minefield.unflag_at(0, 0)
+        assert_equal('H', minefield.to_s)
       end
     end
   end
