@@ -9,7 +9,7 @@ module Minesweeper
         raise ArgumentError unless size.is_a?(Fixnum)
         raise ArgumentError unless size > 0
         @size = size
-        @cells = Array.new(size ** 2) { create_non_explosive_cell }
+        @cells = Array.new(size) { Array.new(size) { create_non_explosive_cell } }
       end
 
       def create_non_explosive_cell
@@ -22,7 +22,7 @@ module Minesweeper
 
       def hide_mine_at(row_index, col_index)
         raise RangeError unless cell_exists_at?(row_index, col_index)
-        @cells[row_index * col_index] = create_explosive_cell
+        @cells[row_index][col_index] = create_explosive_cell
       end
 
       def cell_exists_at?(row_index, col_index)
@@ -35,17 +35,17 @@ module Minesweeper
 
       def reveal_at(row_index, col_index)
         raise RangeError unless cell_exists_at?(row_index, col_index)
-        @cells[row_index * col_index].reveal
+        @cells[row_index][col_index].reveal
       end
 
       def flag_at(row_index, col_index)
         raise RangeError unless cell_exists_at?(row_index, col_index)
-        @cells[row_index * col_index].flag
+        @cells[row_index][col_index].flag
       end
 
       def unflag_at(row_index, col_index)
         raise RangeError unless cell_exists_at?(row_index, col_index)
-        @cells[row_index * col_index].unflag
+        @cells[row_index][col_index].unflag
       end
 
       private :create_non_explosive_cell
