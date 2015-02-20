@@ -1,4 +1,4 @@
-require 'minesweeper/map/elements/cell'
+require 'minesweeper/elements/cell'
 require 'minesweeper/explosives/null_mine'
 require 'minesweeper/explosives/explosion_error'
 

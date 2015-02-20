@@ -1,4 +1,4 @@
-require 'minesweeper/map/elements/cell_state'
+require 'minesweeper/elements/cell_state'
 
 module Minesweeper
   module Map

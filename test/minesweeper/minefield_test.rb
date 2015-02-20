@@ -1,5 +1,5 @@
-require 'minesweeper/map/minefield'
-require 'minesweeper/map/elements/cell'
+require 'minesweeper/minefield'
+require 'minesweeper/elements/cell'
 require 'minesweeper/explosives/explosion_error'
 require 'test/unit'
 

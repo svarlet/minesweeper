@@ -1,20 +1,20 @@
-require 'minesweeper/map/elements/cell_state'
+require 'minesweeper/elements/cell_state'
 
 module Minesweeper
     module Map
         module Elements
-            class FlaggedState < CellState
+            class HiddenState < CellState
                 def reveal
                     @cell.current_state = @cell.revealed_state
                     @cell.trigger
                 end
 
-                def unflag
-                    @cell.current_state = @cell.hidden_state
+                def flag
+                    @cell.current_state = @cell.flagged_state
                 end
 
                 def to_s
-                  "F"
+                  "H"
                 end
             end
         end

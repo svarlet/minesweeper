@@ -1,7 +1,7 @@
-require 'minesweeper/map/elements/cell_state'
-require 'minesweeper/map/elements/hidden_state'
-require 'minesweeper/map/elements/flagged_state'
-require 'minesweeper/map/elements/revealed_state'
+require 'minesweeper/elements/cell_state'
+require 'minesweeper/elements/hidden_state'
+require 'minesweeper/elements/flagged_state'
+require 'minesweeper/elements/revealed_state'
 
 module Minesweeper
   module Map

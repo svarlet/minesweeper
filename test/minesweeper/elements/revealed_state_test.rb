@@ -1,8 +1,8 @@
 require 'test/unit'
-require 'minesweeper/map/elements/cell'
-require 'minesweeper/map/elements/cell_state_error'
-require 'minesweeper/map/elements/hidden_state'
-require 'minesweeper/map/elements/revealed_state'
+require 'minesweeper/elements/cell'
+require 'minesweeper/elements/cell_state_error'
+require 'minesweeper/elements/hidden_state'
+require 'minesweeper/elements/revealed_state'
 require 'minesweeper/explosives/mine_spy'
 
 module Minesweeper
