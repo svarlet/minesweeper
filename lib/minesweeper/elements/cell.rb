@@ -11,7 +11,7 @@ module Minesweeper
       # CURRENT	|	ACTION 	|	STATES			|	ACTION
       # ---------------------------------------------------------
       # hidden	|	reveal	|	revealed 		|	trigger
-      # hidden	|	flag 	|	flagged			|
+      # hidden	|	flag 	  |	flagged			|
       # flagged	|	reveal	|	revealed		|	trigger
       # flagged	|	unflag	|	hidden			|
       # ---------------------------------------------------------
