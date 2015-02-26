@@ -8,13 +8,13 @@ module Minesweeper
   module Elements
     class CellTest < Test::Unit::TestCase
       def setup
-        @cell = Cell.new(Minesweeper::Explosives::MineSpy.new)
+        @cell = Cell.new(Explosives::MineSpy.new)
         @state_spy = CellStateSpy.new
         @cell.current_state = @state_spy
       end
 
       def test_initialize_should_set_current_state_to_hidden
-        assert_instance_of(HiddenState, Cell.new(Minesweeper::Explosives::MineSpy.new).current_state)
+        assert_equal(CellState::HIDDEN_STATE, Cell.new(Minesweeper::Explosives::MineSpy.new).current_state)
       end
 
       def test_flag_should_call_the_flag_method_of_the_current_state
@@ -38,7 +38,7 @@ module Minesweeper
       end
 
       def test_trigger_should_delegate_to_underlying_mine
-        a_mine_spy = Minesweeper::Explosives::MineSpy.new
+        a_mine_spy = Explosives::MineSpy.new
         @cell = Cell.new(a_mine_spy)
         @cell.trigger
         assert(a_mine_spy.trigger_called)

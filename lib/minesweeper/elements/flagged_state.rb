@@ -2,14 +2,14 @@ require_relative 'cell_state'
 
 module Minesweeper
   module Elements
-    class FlaggedState < CellState
-      def reveal
-        @cell.current_state = @cell.revealed_state
-        @cell.trigger
+    class FlaggedState
+      def reveal(cell)
+        cell.current_state = CellState::REVEALED_STATE
+        cell.trigger
       end
 
-      def unflag
-        @cell.current_state = @cell.hidden_state
+      def unflag(cell)
+        cell.current_state = CellState::HIDDEN_STATE
       end
 
       def to_s

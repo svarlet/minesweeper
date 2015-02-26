@@ -1,11 +1,8 @@
 require_relative 'cell_state'
-require_relative 'hidden_state'
-require_relative 'flagged_state'
-require_relative 'revealed_state'
 
 module Minesweeper
   module Elements
-    class Cell < CellState
+    class Cell
       # STATES
       # ---------------------------------------------------------
       # CURRENT	|	ACTION 	|	STATES			|	ACTION
@@ -17,28 +14,24 @@ module Minesweeper
       # ---------------------------------------------------------
 
       attr_accessor :current_state
-      attr_reader :mines_around, :hidden_state, :flagged_state, :revealed_state
+      attr_reader :mines_around
 
       def initialize(mine, mines_around = 0)
-        @hidden_state = HiddenState.new(self)
-        @flagged_state = FlaggedState.new(self)
-        @revealed_state = RevealedState.new(self)
-
-        @current_state = @hidden_state
+        @current_state = CellState::HIDDEN_STATE
         @mine = mine
         @mines_around = mines_around
       end
 
       def flag
-        current_state.flag
+        current_state.flag(self)
       end
 
       def reveal
-        current_state.reveal
+        current_state.reveal(self)
       end
 
       def unflag
-        current_state.unflag
+        current_state.unflag(self)
       end
 
       def to_s

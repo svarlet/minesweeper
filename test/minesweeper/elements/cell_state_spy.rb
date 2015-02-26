@@ -2,7 +2,7 @@ require 'minesweeper/elements/cell_state'
 
 module Minesweeper
   module Elements
-    class CellStateSpy < CellState
+    class CellStateSpy
       attr_reader :flag_called, :reveal_called, :unflag_called, :to_s_called
 
       def initialize
@@ -12,15 +12,15 @@ module Minesweeper
         @to_s_called = false
       end
 
-      def flag
+      def flag(cell)
         @flag_called = true
       end
 
-      def reveal
+      def reveal(cell)
         @reveal_called = true
       end
 
-      def unflag
+      def unflag(cell)
         @unflag_called = true
       end
 

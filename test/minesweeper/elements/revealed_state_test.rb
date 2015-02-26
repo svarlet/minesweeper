@@ -1,9 +1,8 @@
 require 'test/unit'
 require 'minesweeper/elements/cell'
-require 'minesweeper/elements/cell_state_error'
 require 'minesweeper/elements/hidden_state'
 require 'minesweeper/elements/revealed_state'
-require 'minesweeper/explosives/mine_spy'
+require_relative '../explosives/mine_spy'
 
 module Minesweeper
   module Elements
@@ -11,22 +10,23 @@ module Minesweeper
       def setup
         @cell = Cell.new(Minesweeper::Explosives::MineSpy.new)
         @cell.reveal
+        @state = CellState::REVEALED_STATE
       end
 
-      def test_flag_should_raise_cell_state_error
-        assert_raise(CellStateError) { @cell.flag }
+      def test_flag_should_raise_NoMethodError
+        assert_raise(NoMethodError) { @state.flag(@cell) }
       end
 
       def test_reveal_should_raise_cell_state_error
-        assert_raise(CellStateError) { @cell.reveal }
+        assert_raise(NoMethodError) { @state.reveal(@cell) }
       end
 
       def test_unflag_should_raise_cell_state_error
-        assert_raise(CellStateError) { @cell.unflag }
+        assert_raise(NoMethodError) { @state.unflag(@cell) }
       end
 
       def test_to_s_should_return_R
-        assert_equal("R", @cell.to_s)
+        assert_equal("R", @state.to_s)
       end
     end
   end
