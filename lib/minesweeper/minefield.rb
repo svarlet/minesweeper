@@ -1,6 +1,7 @@
 require_relative 'elements/cell'
 require_relative 'explosives/null_mine'
 require_relative 'explosives/explosion_error'
+require_relative 'explosives/mine'
 
 module Minesweeper
   class Minefield
