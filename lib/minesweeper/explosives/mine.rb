@@ -1,4 +1,4 @@
-require 'minesweeper/explosives/explosion_error'
+require_relative 'explosion_error'
 
 module Minesweeper
   module Explosives

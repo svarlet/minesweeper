@@ -1,13 +1,11 @@
-require 'minesweeper/elements/cell_state'
+require_relative 'cell_state'
 
 module Minesweeper
-  module Map
-    module Elements
-        class RevealedState < CellState
-            def to_s
-                "R"
-            end
-        end
+  module Elements
+    class RevealedState < CellState
+      def to_s
+        "R"
+      end
     end
   end
 end
