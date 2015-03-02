@@ -1,3 +1,4 @@
+[![Test Coverage](https://codeclimate.com/github/svarlet/minesweeper/badges/coverage.svg)](https://codeclimate.com/github/svarlet/minesweeper)
 [![Code Climate](https://codeclimate.com/github/svarlet/minesweeper/badges/gpa.svg)](https://codeclimate.com/github/svarlet/minesweeper)
 
 # Minesweeper
