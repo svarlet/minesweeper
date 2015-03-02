@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/svarlet/minesweeper/badges/gpa.svg)](https://codeclimate.com/github/svarlet/minesweeper)
+
 # Minesweeper
 
 TODO: Write a gem description
