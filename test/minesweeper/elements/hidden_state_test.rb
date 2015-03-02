@@ -1,7 +1,5 @@
 require 'test/unit'
 require 'minesweeper/elements/cell'
-require 'minesweeper/elements/flagged_state'
-require 'minesweeper/elements/revealed_state'
 require_relative '../explosives/mine_spy'
 
 module Minesweeper
