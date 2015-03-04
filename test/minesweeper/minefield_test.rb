@@ -1,7 +1,7 @@
 require 'minesweeper/minefield'
 require 'minesweeper/elements/cell'
 require 'minesweeper/explosives/explosion_error'
-require 'test/unit'
+require_relative '../test_helper.rb'
 
 module Minesweeper
   class MineFieldTest < Test::Unit::TestCase

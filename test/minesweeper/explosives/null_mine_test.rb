@@ -1,4 +1,4 @@
-require 'test/unit'
+require_relative '../../test_helper.rb'
 require 'minesweeper/explosives/null_mine'
 
 module Minesweeper

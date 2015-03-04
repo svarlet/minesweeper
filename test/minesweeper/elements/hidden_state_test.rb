@@ -1,4 +1,4 @@
-require 'test/unit'
+require_relative '../../test_helper.rb'
 require 'minesweeper/elements/cell'
 require_relative '../explosives/mine_spy'
 
