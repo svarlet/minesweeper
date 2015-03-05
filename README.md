@@ -1,4 +1,4 @@
-[![Coverage Status](https://coveralls.io/repos/svarlet/minesweeper-console/badge.svg)](https://coveralls.io/r/svarlet/minesweeper-console)
+[![Coverage Status](https://coveralls.io/repos/svarlet/minesweeper/badge.svg?branch=master)](https://coveralls.io/r/svarlet/minesweeper?branch=master)
 [![Build Status](https://travis-ci.org/svarlet/minesweeper.svg?branch=master)](https://travis-ci.org/svarlet/minesweeper)
 [![Test Coverage](https://codeclimate.com/github/svarlet/minesweeper/badges/coverage.svg)](https://codeclimate.com/github/svarlet/minesweeper)
 [![Code Climate](https://codeclimate.com/github/svarlet/minesweeper/badges/gpa.svg)](https://codeclimate.com/github/svarlet/minesweeper)
