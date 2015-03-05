@@ -1,3 +1,4 @@
 require 'coveralls'
-require 'test/unit'
 Coveralls.wear!
+
+require 'test/unit'
