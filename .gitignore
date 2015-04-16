@@ -14,3 +14,7 @@
 mkmf.log
 .idea/
 *.gem
+*.iml
+*.ipr
+*.iws
+
