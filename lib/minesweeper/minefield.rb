@@ -5,6 +5,8 @@ require_relative 'explosives/mine'
 
 module Minesweeper
   class Minefield
+    attr_reader :size
+
     def initialize(size)
       raise ArgumentError unless size.is_a?(Fixnum)
       raise ArgumentError unless size > 0

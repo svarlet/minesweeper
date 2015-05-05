@@ -12,6 +12,10 @@ module Minesweeper
       assert_raise(ArgumentError) { Minefield.new(0) }
     end
 
+    def test_minefield_size_is_accessible
+      assert_equal(4, Minefield.new(4).size)
+    end
+
     def test_string_representation_after_initialization
       assert_equal('H', Minefield.new(1).to_s, "The string representation of a MineField of size 1 is invalid")
       assert_equal('HHHH', Minefield.new(2).to_s, "The string representation of a MineField of size 2 is invalid")
