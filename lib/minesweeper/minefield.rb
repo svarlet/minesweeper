@@ -5,13 +5,13 @@ require_relative 'explosives/mine'
 
 module Minesweeper
   class Minefield
-    attr_reader :size
+    attr_reader :row_count
 
-    def initialize(size)
-      raise ArgumentError unless size.is_a?(Fixnum)
-      raise ArgumentError unless size > 0
-      @size = size
-      @cells = Array.new(size) { Array.new(size) { create_non_explosive_cell } }
+    def initialize(row_count)
+      raise ArgumentError unless row_count.is_a?(Fixnum)
+      raise ArgumentError unless row_count > 0
+      @row_count = row_count
+      @cells = Array.new(row_count) { Array.new(row_count) { create_non_explosive_cell } }
     end
 
     def create_non_explosive_cell
@@ -28,7 +28,7 @@ module Minesweeper
     end
 
     def cell_exists_at?(row_index, col_index)
-      (0...@size).include?(row_index) && (0...@size).include?(col_index)
+      (0...@row_count).include?(row_index) && (0...@row_count).include?(col_index)
     end
 
     def create_explosive_cell
