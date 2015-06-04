@@ -14,12 +14,10 @@ module Minesweeper
       # ---------------------------------------------------------
 
       attr_accessor :current_state
-      attr_reader :mines_around
 
-      def initialize(mine, mines_around = 0)
+      def initialize(mine)
         @current_state = CellState::HIDDEN_STATE
         @mine = mine
-        @mines_around = mines_around
       end
 
       def flag
