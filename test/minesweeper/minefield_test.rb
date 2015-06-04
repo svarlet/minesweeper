@@ -41,6 +41,10 @@ module Minesweeper
       assert_equal('R', minefield.to_s)
     end
 
+    def test_when_no_mine_is_revealed_displays_mines_around_in_the_same_cell
+      fail('not implemented yet')
+    end
+
     def test_flagging_a_cell_at_an_invalid_position_raises_error
       assert_raise(RangeError) { Minefield.new(1).flag_at(1, 1) }
     end
