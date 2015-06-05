@@ -7,7 +7,7 @@ module Minesweeper
   class Minefield
     attr_reader :row_count
 
-    OFFSETS = [[-1, -1], [-1, 0], [1, -1], [0, 1], [1, 1], [1, 0], [1, -1], [0, -1]]
+    OFFSETS = [[-1, -1], [-1, 0], [-1, 1], [0, 1], [0, -1], [1, 1], [1, 0], [1, -1]]
 
     def initialize(row_count)
       raise ArgumentError unless row_count.is_a?(Fixnum)
@@ -26,67 +26,83 @@ module Minesweeper
     end
 
     def hide_mine_at(row_index, col_index)
-      raise RangeError unless cell_exists_at?(row_index, col_index)
-      mines_around = mines_adjacent_to(row_index, col_index)
-      @cells[row_index][col_index] = create_explosive_cell(mines_around)
-      @all_mine_coords << [row_index, col_index]
+      verify_coordinates_existance(row_index, col_index)
+      create_explosive_cell_at(row_index, col_index)
+      register_mine_at(row_index, col_index)
       increase_mine_counters_around(row_index, col_index)
+    end
+
+    def verify_coordinates_existance(row_index, col_index)
+      raise RangeError unless cell_exists_at?(row_index, col_index)
+    end
+
+    def create_explosive_cell_at(row_index, col_index)
+      mines_around = mines_adjacent_to(row_index, col_index)
+      @cells[row_index][col_index] = Elements::Cell.new(Explosives::Mine.new, mines_around)
+    end
+
+    def mines_adjacent_to(row_index, col_index)
+      cells_coords_around(row_index, col_index).count { |coords| @all_mine_coords.include?(coords) }
+    end
+
+    def cells_coords_around(row_index, col_index)
+      coords_around = OFFSETS.map { |coords| [row_index + coords[0], col_index + coords[1]] }
+      valid_coords = coords_around.select { |coords| cell_exists_at?(coords[0], coords[1]) }
     end
 
     def cell_exists_at?(row_index, col_index)
       (0...@row_count).include?(row_index) && (0...@row_count).include?(col_index)
     end
 
-    def create_explosive_cell(mines_around)
-      Elements::Cell.new(Explosives::Mine.new, mines_around)
-    end
-
-    def mines_adjacent_to(row_index, col_index)
-      OFFSETS.count do |x, y|
-        return false unless cell_exists_at?(row_index + x, col_index + y)
-        @all_mine_coords.include?([row_index + x, col_index + y])
-      end
+    def register_mine_at(row_index, col_index)
+      @all_mine_coords << [row_index, col_index]
     end
 
     def increase_mine_counters_around(row_index, col_index)
-      OFFSETS.each do |x, y|
-        next unless cell_exists_at?(row_index + x, col_index + y)
-        a_cell_around = @cells[row_index + x][col_index + y]
-        a_cell_around.mines_around = a_cell_around.mines_around + 1
-      end
+      cells_around(row_index, col_index).each { |cell| cell.mines_around += 1 }
+    end
+
+    def cells_around(row_index, col_index)
+      cells_coords_around(row_index, col_index).map { |coords| cell_at(coords[0], coords[1])}
+    end
+
+    def cell_at(row_index, col_index)
+      @cells[row_index][col_index]
     end
 
     def reveal_at(row_index, col_index)
-      raise RangeError unless cell_exists_at?(row_index, col_index)
-      return if @cells[row_index][col_index].revealed?
-      @cells[row_index][col_index].reveal
-      if @cells[row_index][col_index].mines_around.zero?
-        OFFSETS.each do |x, y|
-          next unless cell_exists_at?(row_index + x, col_index + y)
-          next if @cells[row_index + x][col_index + y].revealed?
-          reveal_at(row_index + x, col_index + y)
+      verify_coordinates_existance(row_index, col_index)
+      return if cell_at(row_index, col_index).revealed?
+      cell_at(row_index, col_index).reveal
+      if cell_at(row_index, col_index).mines_around.zero?
+        cells_coords_around(row_index, col_index).each do |coords|
+          reveal_at(coords[0], coords[1]) unless @cells[coords[0]][coords[1]].revealed?
         end
       end
     end
 
     def flag_at(row_index, col_index)
-      raise RangeError unless cell_exists_at?(row_index, col_index)
-      @cells[row_index][col_index].flag
+      verify_coordinates_existance(row_index, col_index)
+      cell_at(row_index, col_index).flag
     end
 
     def unflag_at(row_index, col_index)
-      raise RangeError unless cell_exists_at?(row_index, col_index)
-      @cells[row_index][col_index].unflag
+      verify_coordinates_existance(row_index, col_index)
+      cell_at(row_index, col_index).unflag
     end
 
     def mines_around(row_index, col_index)
-      @cells[row_index][col_index].mines_around
+      cell_at(row_index, col_index).mines_around
     end
 
     private :create_non_explosive_cell
-    private :create_explosive_cell
+    private :create_explosive_cell_at
     private :cell_exists_at?
     private :increase_mine_counters_around
     private :mines_adjacent_to
+    private :cells_coords_around
+    private :register_mine_at
+    private :cells_around
+    private :cell_at
   end
 end

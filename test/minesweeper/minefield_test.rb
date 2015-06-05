@@ -26,44 +26,57 @@ module Minesweeper
     end
 
     def test_hiding_a_mine_somewhere_should_make_that_cell_explosive
-      minefield = Minefield.new(1)
-      minefield.hide_mine_at(0, 0)
-      assert_raise(ExplosionError) { minefield.reveal_at(0, 0) }
+      @minefield = Minefield.new(1)
+      @minefield.hide_mine_at(0, 0)
+      assert_raise(ExplosionError) { @minefield.reveal_at(0, 0) }
     end
 
     def test_hiding_a_mine_somewhere_should_increase_the_mine_counters_of_cells_around
-      minefield = Minefield.new(2)
-      minefield.hide_mine_at(1, 1)
-      assert_equal(1, minefield.mines_around(0, 0))
-      assert_equal(1, minefield.mines_around(0, 1))
-      assert_equal(1, minefield.mines_around(1, 0))
+      @minefield = Minefield.new(3)
+      @minefield.hide_mine_at(1, 1)
+      assert_mine_around(0, 0)
+      assert_mine_around(0, 1)
+      assert_mine_around(0, 2)
+      assert_mine_around(1, 0)
+      assert_mine_around(1, 2)
+      assert_mine_around(2, 2)
+      assert_mine_around(2, 1)
+      assert_mine_around(2, 0)
+    end
+
+    def assert_mine_around(row_index, col_index)
+      assert_equal(1, @minefield.mines_around(row_index, col_index))
     end
 
     def test_hiding_a_mine_somewhere_should_not_increase_the_mine_counters_of_non_adjacent_cells
-      minefield = Minefield.new(3)
-      minefield.hide_mine_at(2,2)
-      assert_equal(0, minefield.mines_around(0, 0))
-      assert_equal(0, minefield.mines_around(0, 1))
-      assert_equal(0, minefield.mines_around(0, 2))
-      assert_equal(0, minefield.mines_around(1, 0))
-      assert_equal(0, minefield.mines_around(2, 0))
+      @minefield = Minefield.new(3)
+      @minefield.hide_mine_at(2,2)
+      assert_no_mine_around(0, 0)
+      assert_no_mine_around(0, 1)
+      assert_no_mine_around(0, 2)
+      assert_no_mine_around(1, 0)
+      assert_no_mine_around(2, 0)
+    end
+
+    def assert_no_mine_around(row_index, col_index)
+      assert_equal(0, @minefield.mines_around(row_index, col_index))
     end
 
     def test_given_a_non_explosive_cell_with_no_mines_around_when_revealed_then_adjacent_cells_are_revealed
-      minefield = Minefield.new(6)
-      minefield.hide_mine_at(0, 0)
-      minefield.hide_mine_at(1, 2)
-      minefield.hide_mine_at(1, 3)
-      minefield.hide_mine_at(1, 4)
-      minefield.hide_mine_at(3, 1)
-      minefield.reveal_at(4, 4)
+      @minefield = Minefield.new(6)
+      @minefield.hide_mine_at(0, 0)
+      @minefield.hide_mine_at(1, 2)
+      @minefield.hide_mine_at(1, 3)
+      @minefield.hide_mine_at(1, 4)
+      @minefield.hide_mine_at(3, 1)
+      @minefield.reveal_at(4, 4)
       expected = 'HHHHHH'
       expected << 'HHHHHH'
       expected << 'HH3321'
       expected << 'HH1000'
       expected << '111000'
       expected << '000000'
-      assert_equal(expected, minefield.to_s)
+      assert_equal(expected, @minefield.to_s)
     end
 
     def test_revealing_a_cell_at_invalid_position_raises_error
@@ -75,9 +88,9 @@ module Minesweeper
     end
 
     def test_flagging_a_cell_should_change_its_state
-      minefield = Minefield.new(1)
-      minefield.flag_at(0, 0)
-      assert_equal('F', minefield.to_s)
+      @minefield = Minefield.new(1)
+      @minefield.flag_at(0, 0)
+      assert_equal('F', @minefield.to_s)
     end
 
     def test_unflagging_a_cell_at_an_invalid_position_raises_error
@@ -85,10 +98,10 @@ module Minesweeper
     end
 
     def test_unflagging_a_cell_should_change_its_state
-      minefield = Minefield.new(1)
-      minefield.flag_at(0, 0)
-      minefield.unflag_at(0, 0)
-      assert_equal('H', minefield.to_s)
+      @minefield = Minefield.new(1)
+      @minefield.flag_at(0, 0)
+      @minefield.unflag_at(0, 0)
+      assert_equal('H', @minefield.to_s)
     end
   end
 end
