@@ -14,10 +14,12 @@ module Minesweeper
       # ---------------------------------------------------------
 
       attr_accessor :current_state
+      attr_accessor :mines_around
 
-      def initialize(mine)
+      def initialize(mine, mines_around = 0)
         @current_state = CellState::HIDDEN_STATE
         @mine = mine
+        @mines_around = mines_around
       end
 
       def flag
@@ -33,11 +35,15 @@ module Minesweeper
       end
 
       def to_s
-        @current_state.to_s
+        @current_state == CellState::REVEALED_STATE ? @mines_around.to_s : @current_state.to_s
       end
 
       def trigger
         @mine.trigger
+      end
+
+      def revealed?
+        @current_state == CellState::REVEALED_STATE
       end
     end
   end

@@ -1,6 +1,7 @@
 require_relative '../../test_helper.rb'
 require 'minesweeper/elements/cell'
 require 'minesweeper/elements/hidden_state'
+require 'minesweeper/explosives/null_mine'
 require_relative '../elements/cell_state_spy'
 require_relative '../explosives/mine_spy'
 
@@ -42,6 +43,18 @@ module Minesweeper
         @cell = Cell.new(a_mine_spy)
         @cell.trigger
         assert(a_mine_spy.trigger_called)
+      end
+
+      def test_given_a_cell_with_no_mines_when_revealed_then_to_s_returns_mines_around
+        safe_cell = Cell.new(Explosives::NullMine.new, 1)
+        safe_cell.reveal
+        assert_equal('1', safe_cell.to_s)
+      end
+
+      def test_when_a_cell_is_revealed_then_revealed_should_be_true
+        cell = Cell.new(Explosives::NullMine.new, 0)
+        cell.reveal
+        assert_true(cell.revealed?)
       end
     end
   end
