@@ -76,7 +76,7 @@ module Minesweeper
       cell_at(row_index, col_index).reveal
       if cell_at(row_index, col_index).mines_around.zero?
         cells_coords_around(row_index, col_index).each do |coords|
-          reveal_at(coords[0], coords[1]) unless @cells[coords[0]][coords[1]].revealed?
+          reveal_at(coords[0], coords[1]) unless cell_at(coords[0], coords[1]).revealed?
         end
       end
     end
