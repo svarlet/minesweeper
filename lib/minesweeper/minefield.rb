@@ -46,7 +46,7 @@ module Minesweeper
 
     def cells_coords_around(row_index, col_index)
       coords_around = OFFSETS.map { |coords| [row_index + coords[0], col_index + coords[1]] }
-      valid_coords = coords_around.select { |coords| cell_exists_at?(coords[0], coords[1]) }
+      coords_around.select { |coords| cell_exists_at?(coords[0], coords[1]) }
     end
 
     def cell_exists_at?(row_index, col_index)
