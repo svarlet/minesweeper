@@ -1,6 +1,4 @@
-require "minesweeper/version"
-require "minesweeper/minefield"
+require 'minesweeper/version'
+require 'minesweeper/minefield'
+require 'minesweeper/explosives/explosion_error'
 
-module Minesweeper
-  # Your code goes here...
-end
