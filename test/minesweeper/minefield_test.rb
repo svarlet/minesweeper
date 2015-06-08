@@ -27,7 +27,7 @@ module Minesweeper
     def test_hiding_a_mine_somewhere_should_make_that_cell_explosive
       @minefield = Minefield.new(1)
       @minefield.hide_mine_at(0, 0)
-      assert_raise(ExplosionError) { @minefield.reveal_at(0, 0) }
+      assert_raise(Explosives::ExplosionError) { @minefield.reveal_at(0, 0) }
     end
 
     def test_hiding_a_mine_somewhere_should_increase_the_mine_counters_of_cells_around
