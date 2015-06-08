@@ -10,7 +10,6 @@ module Minesweeper
     OFFSETS = [[-1, -1], [-1, 0], [-1, 1], [0, 1], [0, -1], [1, 1], [1, 0], [1, -1]]
 
     def initialize(row_count)
-      raise ArgumentError unless row_count.is_a?(Fixnum)
       raise ArgumentError unless row_count > 0
       @row_count = row_count
       @cells = Array.new(row_count) { Array.new(row_count) { create_non_explosive_cell } }

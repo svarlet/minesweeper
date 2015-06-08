@@ -8,7 +8,6 @@ module Minesweeper
     def test_initialization_expects_a_strictly_positive_integer_parameter
       assert_raise(ArgumentError) { Minefield.new(-1) }
       assert_raise(ArgumentError) { Minefield.new('a') }
-      assert_raise(ArgumentError) { Minefield.new(1.4) }
       assert_raise(ArgumentError) { Minefield.new(0) }
     end
 
