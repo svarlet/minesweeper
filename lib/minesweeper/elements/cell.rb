@@ -45,6 +45,10 @@ module Minesweeper
       def revealed?
         @current_state == CellState::REVEALED_STATE
       end
+
+      def flagged?
+        @current_state == CellState::FLAGGED_STATE
+      end
     end
   end
 end

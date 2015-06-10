@@ -56,6 +56,24 @@ module Minesweeper
         cell.reveal
         assert_true(cell.revealed?)
       end
+
+      def test_flagged_is_false_until_cell_is_flagged
+        cell = Cell.new(Explosives::NullMine.new, 0)
+        assert_false(cell.flagged?)
+      end
+
+      def test_flagged_is_false_after_cell_is_unflagged
+        cell = Cell.new(Explosives::NullMine.new, 0)
+        cell.flag
+        cell.unflag
+        assert_false(cell.flagged?)
+      end
+
+      def test_flagged_is_true_after_cell_is_flagged
+        cell = Cell.new(Explosives::NullMine.new, 0)
+        cell.flag
+        assert_true(cell.flagged?)
+      end
     end
   end
 end

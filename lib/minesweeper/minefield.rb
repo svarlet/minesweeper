@@ -2,6 +2,7 @@ require_relative 'elements/cell'
 require_relative 'explosives/null_mine'
 require_relative 'explosives/explosion_error'
 require_relative 'explosives/mine'
+require_relative 'minefield_solved_error'
 
 module Minesweeper
   class Minefield
@@ -83,6 +84,12 @@ module Minesweeper
     def flag_at(row_index, col_index)
       verify_coordinates_existance(row_index, col_index)
       cell_at(row_index, col_index).flag
+      raise MinefieldSolvedError if !@all_mine_coords.empty? && all_mines_flagged?
+    end
+
+    def all_mines_flagged?
+      mined_cells = @all_mine_coords.map { |coords| cell_at(*coords) }
+      mined_cells.all?(&:flagged?)
     end
 
     def unflag_at(row_index, col_index)
@@ -103,5 +110,6 @@ module Minesweeper
     private :register_mine_at
     private :cells_around
     private :cell_at
+    private :all_mines_flagged?
   end
 end

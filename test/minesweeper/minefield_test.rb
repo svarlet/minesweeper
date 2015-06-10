@@ -1,6 +1,7 @@
 require 'minesweeper/minefield'
 require 'minesweeper/elements/cell'
 require 'minesweeper/explosives/explosion_error'
+require 'minesweeper/minefield_solved_error'
 require_relative '../test_helper.rb'
 
 module Minesweeper
@@ -101,6 +102,17 @@ module Minesweeper
       @minefield.flag_at(0, 0)
       @minefield.unflag_at(0, 0)
       assert_equal('H', @minefield.to_s)
+    end
+
+    def test_when_player_flags_a_cell_then_player_doesnt_win_if_it_is_not_the_last_remaining_mined_cell
+      @minefield = Minefield.new(2)
+      assert_nothing_raised(MinefieldSolvedError) { @minefield.flag_at(0, 0) }
+    end
+
+    def test_when_player_flags_a_cell_then_player_wins_the_game_if_it_is_the_last_remaining_mined_cell
+      @minefield = Minefield.new(1)
+      @minefield.hide_mine_at(0,0)
+      assert_raise(MinefieldSolvedError) { @minefield.flag_at(0,0) }
     end
   end
 end
