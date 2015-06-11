@@ -3,32 +3,13 @@
 
 # Minesweeper
 
-TODO: Write a gem description
+The rules of the minesweeper game are explained there: http://en.wikipedia.org/wiki/Minesweeper_(video_game).
 
-## Installation
+This repository contains a ruby gem that defines the core concepts of a 2D minesweeper game: minefield, cells, mines and the user interactions with the minefield (reveal, flag, unflag). 
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'minesweeper'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install minesweeper
+Therefore, this gem is not a playable version of the game but if you want to try it, I also built a [terminal frontend](https://github.com/svarlet/minesweeper-console) which uses it.
 
 ## Usage
 
-TODO: Write usage instructions here
+An example of the usage of this library can be found in my terminal based implementation of this game: [svarlet/minesweeper-console](https://github.com/svarlet/minesweeper-console).
 
-## Contributing
-
-1. Fork it ( https://github.com/[my-github-username]/minesweeper/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
