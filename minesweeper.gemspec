@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'minesweeper/version'
+require 'minesweeper/core/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "minesweeper"
-  spec.version       = Minesweeper::VERSION
+  spec.version       = Minesweeper::Core::VERSION
   spec.authors       = ["Sebastien Varlet"]
   spec.email         = ["sebastien.varlet@gmail.com"]
   spec.summary       = %q{Core model of the minesweeper game.}
