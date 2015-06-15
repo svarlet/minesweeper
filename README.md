@@ -11,11 +11,8 @@ Therefore, this gem is not a playable version of the game but if you want to try
 
 ## Install
 
-Sadly, this gem can't be pushed to rubygems as there are already a pair of gems with the same name. I may or may not rename my gem to fix this. Meanwhile, one can simply do:
 ```
-git clone https://github.com/svarlet/minesweeper.git
-cd minesweeper
-rake build install
+spec.add_runtime_dependencty "minesweeper-core", "~> 2.0.0"
 ```
 
 ## Usage
