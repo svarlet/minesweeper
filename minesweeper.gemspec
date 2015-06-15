@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'minesweeper/core/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "minesweeper"
+  spec.name          = "minesweeper-core"
   spec.version       = Minesweeper::Core::VERSION
   spec.authors       = ["Sebastien Varlet"]
   spec.email         = ["sebastien.varlet@gmail.com"]
