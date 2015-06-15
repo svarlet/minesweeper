@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/svarlet/minesweeper.svg?branch=master)](https://travis-ci.org/svarlet/minesweeper)
-[![Coverage Status](https://coveralls.io/repos/svarlet/minesweeper/badge.svg?branch=master)](https://coveralls.io/r/svarlet/minesweeper?branch=master)
+[![Build Status](https://travis-ci.org/svarlet/minesweeper-core.svg?branch=master)](https://travis-ci.org/svarlet/minesweeper-core)
+[![Coverage Status](https://coveralls.io/repos/svarlet/minesweeper-core/badge.svg?branch=master)](https://coveralls.io/r/svarlet/minesweeper-core?branch=master)
 
 # Minesweeper
 
